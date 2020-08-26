@@ -19,8 +19,8 @@ class Calculator extends React.Component {
   render() {
     return(
       <div className="pt5">
-        <div className='Pattern br3 pl5 black k-10 mv3 w-70 w-70-m w-50-l mw7 shadow-1 center'>
-          <h1 style={{fontFamily: 'Courier New'}}>Irfan Award Quick-Tool<p className="f6">This automated tool generates an estimate figure of the final Irfan Award.</p></h1>
+        <div className='Pattern br3 black k-10 mv3 w-70 w-70-m w-50-l mw7 shadow-1 center'>
+          <h1 style={{fontFamily: 'Courier New'}} className="b">Irfan Award Quick-Tool<p className="f6">This automated tool generates an estimate figure of the final Irfan Award</p></h1>
           <div></div>
         </div>
         <article className='Pattern br3 black k-10 mv3 w-70 w-70-m w-50-l mw7 shadow-1 center'>
@@ -49,11 +49,22 @@ class Calculator extends React.Component {
                   </div>
               </fieldset>
               <div className="">
-                <input
+                {/* <input
                   onClick={this.onSubmitInput}
                   className="b pa3 pv1 input-reset ba b--near-black black bg-transparent grow pointer f6 dib"
                   type="submit"
-                  value="Generate Report"/></div>
+                  value="Generate Report"/> */}
+                  <button
+                    onClick={this.onSubmitInput}
+                    style={{fontFamily: 'Courier New'}}
+                    className="w3-button w3-black w3-border w3-hover-green w3-small grow">Generate Report</button>
+                    <div
+
+                      style={{fontFamily: 'Courier New', fontSize: "12px"}}
+                      className="w3-panel w3-pale-red w3-leftbar w3-border-red">
+                      <p>Not affiliated with <a className="dim hover-black b link" href="https://www.sidf.gov.sa/en/Pages/Home.aspx" target="_blank"  rel="noopener noreferrer" style={{textDecoration: "none"}}>Saudi Industrial Development Fund.</a></p>
+                    </div>
+                </div>
             </div>
           </main>
         </article>
