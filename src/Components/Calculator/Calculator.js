@@ -33,7 +33,7 @@ class Calculator extends React.Component {
                     style={{fontFamily: 'Courier New'}}
                     onChange={this.onBSalaryChange}
                     placeholder="13500"
-                    className="pa2 b black ba bg-transparent hover-bg-black hover-black w-100 ba b--near-black"
+                    className="pa2 b black ba bg-transparent hover-bg-black hover-white w-100 ba b--near-black"
                     type="text"/>
                   </div>
                 <div className="mv3">
@@ -42,7 +42,7 @@ class Calculator extends React.Component {
                     style={{fontFamily: 'Courier New'}}
                     onChange={this.onDOBChange}
                     placeholder="1995-10-26"
-                    className="b pa2 input-reset ba bg-transparent hover-bg-black hover-black w-100 ba b--near-black"
+                    className="b pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100 ba b--near-black"
                     type="date"
                     name="date"
                     id="date-of-birth"/>
@@ -51,7 +51,7 @@ class Calculator extends React.Component {
               <div className="">
                 <input
                   onClick={this.onSubmitInput}
-                  className="b pa3 pv1 input-reset ba b--near-white white bg-transparent grow pointer f6 dib"
+                  className="b pa3 pv1 input-reset ba b--near-black black bg-transparent grow pointer f6 dib"
                   type="submit"
                   value="Generate Report"/></div>
             </div>
