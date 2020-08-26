@@ -1,10 +1,6 @@
 import React from 'react';
 
 class Calculator extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-setBSalary
 
   onBSalaryChange = (event) => {
     this.setState(this.props.setBSalary(event.target.value))
@@ -20,7 +16,7 @@ setBSalary
 
   render() {
     return(
-      <div className="pt6">
+      <div>
         <article className='br3 ba black b--black k-10 mv4 w-100 w-50-m w-50-l mw6 shadow-5 center'>
           <main className="pa4 white-80">
             <div className="measure">
@@ -31,16 +27,15 @@ setBSalary
                   <input
                     onChange={this.onBSalaryChange}
                     placeholder="13500"
-                    className="pa2 b black input-reset ba bg-transparent hover-bg-black hover-white w-100 ba b--near-black"
-                    type="text"
-                    name="basic-salary"
-                    id="basic-salary"/>
+                    className="pa2 b black ba bg-transparent hover-bg-black hover-white w-100 ba b--near-black"
+                    type="text"/>
                   </div>
                 <div className="mv3">
                   <label className="db fw6 lh-copy f6 black b" htmlFor="date-of-birth">Date of Birth</label>
                   <input
                     onChange={this.onDOBChange}
-                    className="b black pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100 ba b--near-black"
+                    placeholder="1995-10-26"
+                    className="b pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100 ba b--near-black"
                     type="date"
                     name="date"
                     id="date-of-birth"/>

@@ -1,9 +1,6 @@
 import React from 'react';
 
 class Report extends React.Component {
-  constructor(props) {
-    super(props);
-  }
 
   onBack = () => {
     this.props.onRouteChange('cal');
@@ -35,56 +32,82 @@ class Report extends React.Component {
     switch(ryunr) {
       case 1:
         vesm = 12;
+        break;
       case 2:
         vesm = 13;
+        break;
       case 3:
         vesm = 14;
+        break;
       case 4:
         vesm = 15;
+        break;
       case 5:
         vesm = 16;
+        break;
       case 6:
         vesm = 17;
+        break;
       case 7:
         vesm = 18;
+        break;
       case 8:
         vesm = 19;
+        break;
       case 9:
         vesm = 20;
+        break;
       case 10:
         vesm = 21;
+        break;
       case 11:
         vesm = 22;
+        break;
       case 12:
         vesm = 23;
+        break;
       case 13:
         vesm = 24;
+        break;
       case 14:
         vesm = 25;
+        break;
       case 15:
         vesm = 26;
+        break;
       case 16:
         vesm = 27;
+        break;
       case 17:
         vesm = 28;
+        break;
       case 18:
         vesm = 29;
+        break;
       case 19:
         vesm = 30;
+        break;
       case 20:
         vesm = 31;
+        break;
       case 21:
         vesm = 32;
+        break;
       case 22:
         vesm = 33;
+        break;
       case 23:
         vesm = 34;
+        break;
       case 24:
         vesm = 35;
+        break;
       case 25:
         vesm = 36;
+        break;
       default:
         vesm = 36;
+        break;
     }
     const strpay = (this.props.state.bs * 1445).toString();
     const fpay = strpay.substring(0,2) + "," + strpay.substring(2,5) + "." + strpay.substring(5,7);
@@ -106,7 +129,7 @@ class Report extends React.Component {
     const gcstr = (parseInt(gctstr.substring(0,5)) + parseInt(viastr)).toString();
     const gc = gcstr.substring(0,3) + "," + gcstr.substring(3,6);
     return (
-      <div className='pt5 tc'>
+      <div>
         <article className='br3 ba black b--black k-10 mv4 w-100 w-50-m w-50-l mw6 shadow-5 center'>
           <main className="pa4 black-80">
             <div className="measure">
@@ -133,7 +156,7 @@ class Report extends React.Component {
                   type="submit"
                   value="Back"/>
                   <input
-                    onClick={this.onSubmitInput}
+                    onClick={this.onBack}
                     className="b pa3 pv1 input-reset ba b--black white bg-red grow pointer f6 dib"
                     type="submit"
                     value="Generate PDF"/></div>
