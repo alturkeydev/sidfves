@@ -130,7 +130,7 @@ class Report extends React.Component {
     const gc = gcstr.substring(0,3) + "," + gcstr.substring(3,6);
     return (
       <div className="pt5">
-        <article className='br3 ba black b--black k-10 mv4 w-100 w-50-m w-50-l mw6 shadow-5 center'>
+        <article className='br3 ba black b--black k-10 mv4 w-100 w-90-m w-50-l mw6 shadow-5 center'>
           <main className="pa4 black-80">
             <div className="measure">
               <fieldset id="input" className="ba b--transparent ph0 mh0">
