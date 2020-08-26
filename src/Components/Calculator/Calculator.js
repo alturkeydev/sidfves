@@ -17,7 +17,7 @@ class Calculator extends React.Component {
   render() {
     return(
       <div className="pt6">
-        <article className='br3 ba black b--black k-10 mv4 w-100 w-80-m w-50-l mw6 shadow-5 center'>
+        <article className='br3 ba black b--black k-10 mv4 w-90 w-90-m w-50-l mw6 shadow-5 center'>
           <main className="pa4 white-80">
             <div className="measure">
               <fieldset id="input" className="ba b--transparent ph0 mh0">
