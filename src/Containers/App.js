@@ -7,7 +7,7 @@ import './App.css';
 const particlesOptions = {
   particles: {
     number: {
-      value: 120,
+      value: 80,
       density: {
         enable: true,
         value_area: 700
@@ -53,8 +53,8 @@ class App extends Component {
       <div className="App">
         <Particles params={particlesOptions} className='particles' />
         { this.state.route === 'cal' ? <div> <Calculator  state={this.state} setBSalary={this.setBSalary} setDOB={this.setDOB} onRouteChange={this.onRouteChange}/> </div> : <div> <Report state={this.state} onRouteChange={this.onRouteChange}/> </div>}
-        <footer className="f5 black pb3">
-          © 2020 | Made by <a className="dim hover-white b" href="https://yousefalturkey.sa/" target="_blank"  rel="noopener noreferrer" style={{textDecoration: "none"}}> Yousef Alturkey</a>.
+        <footer style={{fontFamily: 'Courier New'}} className="f5 white pb3">
+          © 2020 | Made by <a className="dim hover-black b" href="https://yousefalturkey.sa/" target="_blank"  rel="noopener noreferrer" style={{textDecoration: "none"}}> Yousef Alturkey</a>.
         </footer>
       </div>
     );
