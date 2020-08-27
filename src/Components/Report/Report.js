@@ -243,34 +243,34 @@ class Report extends React.Component {
     const { age, ytr, gosiSalary, gosiCont, ia, medCov } = this.performCalculations();
     return (
       <div className="pt5">
-        <div className='Pattern br3 black k-10 mv3 w-80 w-80-m w-50-l mw7 shadow-1 center w3-border-green w3-leftbar w3-rightbar w3-white'>
+        <div className='br3 black k-10 mv3 w-80 w-80-m w-50-l mw7 shadow-1 center w3-border-green w3-leftbar w3-rightbar w3-white'>
           <h1 className="b f3">Your Information</h1><br/>
         </div>
-        <div className='Pattern br3 black k-10 mv3 w-80 w-80-m w-50-l mw7 shadow-1 center w3-border-green w3-leftbar w3-rightbar w3-white'>
+        <div className='br3 black k-10 mv3 w-80 w-80-m w-50-l mw7 shadow-1 center w3-border-green w3-leftbar w3-rightbar w3-white'>
             <ul className="w3-ul w3-card-2 w3-center" style={{ width: "100%" }}>
               <li>
-                <h6 className="f4 grow w3-animate-right">
+                <h6 className="f4 grow">
                   <img src={hage} alt="" className="w3-bar-item w3-square" style={{ width:"60px" }}/>
                     <br/>
                     <span style={{fontSize: "1rem", textAlign: "justify"}} className="w3-bar-item">Hijri Age &#8594;  <strong>{age} yrs</strong></span>
                 </h6>
               </li>
               <li>
-                <h6 className="f4 grow w3-animate-right">
+                <h6 className="f4 grow">
                   <img src={retire} alt="" className="w3-bar-item w3-square" style={{ width:"60px" }}/>
                     <br/>
                     <span style={{fontSize: "1rem", textAlign: "justify"}} className="w3-bar-item">Years to Retirement &#8594;  <strong>{isNaN(ytr) ? "0 yrs" : age > 0 ? ytr > 0 ? ytr + " yrs" : "retired" : "0 yrs"}</strong></span>
                 </h6>
               </li>
               <li>
-                <h6 className="f4 grow w3-animate-right">
-                  <img src={salary} alt="" className="w3-bar-item w3-square w3-animate-right" style={{ width:"70px" }}/>
+                <h6 className="f4 grow">
+                  <img src={salary} alt="" className="w3-bar-item w3-square" style={{ width:"70px" }}/>
                     <br/>
                     <span style={{fontSize: "1rem", textAlign: "justify"}} className="w3-bar-item">GOSI-Eligible Salary &#8594;  <strong>{gosiSalary} &#65020;</strong></span>
                 </h6>
               </li>
               <li>
-                <h6 className="f4 grow w3-animate-right">
+                <h6 className="f4 grow">
                   <img src={gosi} alt="" className="w3-bar-item w3-square" style={{ width:"70px" }}/>
                     <br/>
                     <span style={{fontSize: "1rem", textAlign: "justify"}} className="w3-bar-item">Monthly GOSI Cuts &#8594;  <strong>{isNaN(gosiCont) ? 0 : gosiCont} &#65020;</strong></span>
@@ -284,14 +284,14 @@ class Report extends React.Component {
         <div className='br3 black k-10 mv3 w-80 w-80-m w-50-l mw7 shadow-1 center w3-border-green w3-leftbar w3-rightbar w3-white'>
             <ul className="w3-ul w3-card-2 w3-center" style={{ width: "100%" }}>
               <li>
-                <h6 className="f4 grow w3-animate-right">
+                <h6 className="f4 grow">
                   <img src={award} alt="" className="w3-bar-item w3-square" style={{ width:"70px" }}/>
                     <br/>
                     <span style={{fontSize: "1rem", textAlign: "justify"}} className="w3-bar-item">Irfan Award &#8594;  <strong>{ia > 0 ? ia.toString().substring(0,3) + "," + ia.toString().substring(3,ia.length) : ia} &#65020;</strong></span>
                 </h6>
               </li>
               <li>
-                <h6 className="f4 grow w3-animate-right">
+                <h6 className="f4 grow">
                   <img src={hc} alt="" className="w3-bar-item w3-square" style={{ width:"60px" }}/>
                     <br/>
                     <span  style={{fontSize: "1rem", textAlign: "justify"}}className="w3-bar-item">Medical Coverage &#8594;  <strong>{ia > 0 ? medCov : 0} yrs</strong></span>
