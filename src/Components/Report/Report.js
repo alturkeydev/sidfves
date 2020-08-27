@@ -155,7 +155,7 @@ class Report extends React.Component {
                 <h6 className="f4 grow w3-animate-right">
                   <img src={gosi} alt="" className="w3-bar-item w3-square" style={{ width:"70px" }}/>
                     <br/>
-                    <span style={{fontSize: "1rem", textAlign: "justify"}} className="w3-bar-item">Monthly GOSI Contributions &#8594;  <strong>{isNaN(gosiCont) ? 0 : gosiCont} &#65020;</strong></span>
+                    <span style={{fontSize: "1rem", textAlign: "justify"}} className="w3-bar-item">Monthly GOSI Deduct &#8594;  <strong>{isNaN(gosiCont) ? 0 : gosiCont} &#65020;</strong></span>
                 </h6>
               </li>
             </ul>
