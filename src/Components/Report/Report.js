@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
   page: {
     display: 'flex',
     flexDirection: 'column',
-    backgroundColor: '#E4E4E4'
+    backgroundColor: '#FFFFFF'
   },
   section: {
     margin: 20,
@@ -184,7 +184,8 @@ class Report extends React.Component {
     const gosiCont = Math.round(((gosiSalary * 0.09) + Number.EPSILON) * 100) / 100;
     result.gosiCont = gosiCont;
 
-    const via = Math.round(((gosiSalary * vesm) + Number.EPSILON) * 100) / 100;
+    const via = Math.round(((this.props.state.bs * vesm) + Number.EPSILON) * 100) / 100;
+    console.log(via);
     result.via = via;
     let gtu = 0;
     if (acuYTR >= 3) {
