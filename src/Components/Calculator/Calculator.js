@@ -19,10 +19,10 @@ class Calculator extends React.Component {
   render() {
     return(
       <div className="pt5">
-        <div className='br3 k-10 mv3 w-70 w-70-m w-50-l mw7 shadow-1 center w3-border-green w3-leftbar w3-rightbar w3-white'>
+        <div className='br3 k-10 mv3 w-80 w-80-m w-50-l mw7 shadow-1 center w3-border-green w3-leftbar w3-rightbar w3-white'>
           <h1 style={{fontFamily: 'Calibri'}} className="b f3">Irfan Award Quick-Tool<p className="f6 gray">This automated tool generates an estimate figure of the final Irfan Award.</p></h1>
         </div>
-        <article className='Pattern br3 black k-10 mv3 w-70 w-70-m w-50-l mw7 shadow-1 center w3-border-green w3-leftbar w3-rightbar w3-white'>
+        <article className='Pattern br3 black k-10 mv3 w-80 w-80 w-50-l mw7 shadow-1 center w3-border-green w3-leftbar w3-rightbar w3-white'>
           <main className="pa4 black-80">
             <div className="measure">
               <fieldset id="input" className="ba b--transparent ph0 mh0">
