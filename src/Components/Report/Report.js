@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
   body: {
     fontWeight: 'bold',
     fontFamily: 'Courier',
-    fontSize: 16,
+    fontSize: 20,
     paddingTop: 15,
     textAlign: "left"
   },
@@ -50,13 +50,13 @@ const styles = StyleSheet.create({
     color: '#0aab65',
     fontWeight: 'bold',
     fontFamily: 'Courier',
-    fontSize: 14,
+    fontSize: 18,
     paddingTop: 15,
     textAlign: "justify"
   },
   footer: {
     fontFamily: "Courier",
-    fontSize: 9,
+    fontSize: 11,
     paddingTop: 100,
   },
   link: {
@@ -185,7 +185,6 @@ class Report extends React.Component {
     result.gosiCont = gosiCont;
 
     const via = Math.round(((this.props.state.bs * vesm) + Number.EPSILON) * 100) / 100;
-    console.log(via);
     result.via = via;
     let gtu = 0;
     if (acuYTR >= 3) {
