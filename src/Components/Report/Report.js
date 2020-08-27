@@ -2,10 +2,10 @@ import React from 'react';
 import { PDFDownloadLink, Page, Text, View, Document, StyleSheet, Link, Image } from '@react-pdf/renderer'
 import './Report.css';
 import hage from './hage.png';
+import retire from './retire.png';
 import gosi from './gosi.png';
 import hc from './hc.png';
 import award from './award.png';
-import retire from './retire.png';
 import salary from './salary.png';
 import applogo from './applogo.png';
 import vialogo from './vialogo.png';
@@ -262,7 +262,7 @@ class Report extends React.Component {
                 <h6 className="f4">
                   <img src={retire} alt="" className="w3-bar-item w3-square" style={{ width:"60px" }}/>
                     <br/>
-                    <span style={{fontSize: "1rem", textAlign: "justify"}} className="w3-bar-item">Years to Retirement &#8594;  <strong>{ytr} yrs</strong></span>
+                    <span style={{fontSize: "1rem", textAlign: "justify"}} className="w3-bar-item">Years to Retirement &#8594;  <strong>{isNaN(ytr) ? "0 yrs" : age > 0 ? ytr > 0 ? ytr + " yrs" : "retired" : "0 yrs"}</strong></span>
                 </h6>
               </li>
               <li>
