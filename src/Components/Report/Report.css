@@ -1,0 +1,19 @@
+.Pattern {
+  background: white;
+}
+
+a {
+  text-decoration: none;
+}
+
+div {
+  font-family: "Calibri";
+}
+
+strong{
+  color: #00FF90;
+}
+
+*{
+  font-family: "Calibri";
+}

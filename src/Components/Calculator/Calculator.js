@@ -19,11 +19,10 @@ class Calculator extends React.Component {
   render() {
     return(
       <div className="pt5">
-        <div className='Pattern br3 black k-10 mv3 w-70 w-70-m w-50-l mw7 shadow-1 center'>
-          <h1 style={{fontFamily: 'Calibri'}} className="b">Irfan Award Quick-Tool<p className="f6">This automated tool generates an estimate figure of the final Irfan Award</p></h1>
-          <div></div>
+        <div className='br3 k-10 mv3 w-70 w-70-m w-50-l mw7 shadow-1 center w3-border-green w3-leftbar w3-rightbar w3-white'>
+          <h1 style={{fontFamily: 'Calibri'}} className="b f3">Irfan Award Quick-Tool<p className="f6 gray">This automated tool generates an estimate figure of the final Irfan Award.</p></h1>
         </div>
-        <article className='Pattern br3 black k-10 mv3 w-70 w-70-m w-50-l mw7 shadow-1 center'>
+        <article className='Pattern br3 black k-10 mv3 w-70 w-70-m w-50-l mw7 shadow-1 center w3-border-green w3-leftbar w3-rightbar w3-white'>
           <main className="pa4 black-80">
             <div className="measure">
               <fieldset id="input" className="ba b--transparent ph0 mh0">
@@ -32,7 +31,7 @@ class Calculator extends React.Component {
                   <input
                     style={{fontFamily: 'Calibri'}}
                     onChange={this.onBSalaryChange}
-                    placeholder="13500"
+                    placeholder="10000"
                     className="pa2 b black ba bg-transparent hover-bg-black hover-white w-100 ba b--near-black"
                     type="text"/>
                   </div>
@@ -41,30 +40,25 @@ class Calculator extends React.Component {
                   <input
                     style={{fontFamily: 'Calibri'}}
                     onChange={this.onDOBChange}
-                    placeholder="1995-10-26"
-                    className="b pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100 ba b--near-black"
+                    className="b pa2 input-reset ba bg-transparent hover-black w-100 ba b--near-black"
                     type="date"
                     name="date"
                     id="date-of-birth"/>
                   </div>
               </fieldset>
-              <div className="">
-                {/* <input
+              <div>
+                <input
                   onClick={this.onSubmitInput}
-                  className="b pa3 pv1 input-reset ba b--near-black black bg-transparent grow pointer f6 dib"
+                  className="b pa3 pv1 mr2 input-reset ba b--black black bg-transparent grow pointer f6 dib"
                   type="submit"
-                  value="Generate Report"/> */}
-                  <button
-                    onClick={this.onSubmitInput}
-                    style={{fontFamily: 'Calibri'}}
-                    className="w3-button w3-black w3-border w3-hover-green w3-small grow">Generate Report</button>
-                    <div
-
-                      style={{fontFamily: 'Calibri', fontSize: "12px"}}
-                      className="w3-panel w3-pale-red w3-leftbar w3-border-red">
-                      <p>Not affiliated with <a className="dim hover-black b link" href="https://www.sidf.gov.sa/en/Pages/Home.aspx" target="_blank"  rel="noopener noreferrer" style={{textDecoration: "none"}}>Saudi Industrial Development Fund.</a></p>
-                    </div>
+                  id="submitButton"
+                  value="Generate Report"/>
+                <div
+                  style={{fontSize: "0.7rem", textAlign: "justify"}}
+                  className="w3-panel w3-pale-yellow w3-leftbar w3-border-yellow">
+                  <p>Not affiliated with <a className="dim hover-black b link" href="https://www.sidf.gov.sa/en/Pages/Home.aspx" target="_blank"  rel="noopener noreferrer" style={{textDecoration: "none"}}>Saudi Industrial Development Fund.</a></p>
                 </div>
+              </div>
             </div>
           </main>
         </article>

@@ -1,7 +1,16 @@
-.Pattern {
-  background: white;
-}
-
 a {
   text-decoration: none;
+}
+
+*{
+  font-family: "Calibri";
+}
+
+#submitButton {
+  color: white;
+  background-color: black;
+}
+#submitButton:hover {
+  color: black;
+  background-color: #00FF90;
 }

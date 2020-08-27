@@ -1,4 +1,11 @@
 import React from 'react';
+import './Report.css';
+import hage from './hage.png';
+import gosi from './gosi.png';
+import hc from './hc.png';
+import award from './award.png';
+import retire from './retire.png';
+import salary from './salary.png';
 
 class Report extends React.Component {
 
@@ -21,148 +28,183 @@ class Report extends React.Component {
   }
 
   calculateHAge = () => {
-    return Math.round((Date.parse(this.getTodaysDate()) - Date.parse(this.props.state.dob))/30670000000);
+    const age = Math.round((Date.parse(this.getTodaysDate()) - Date.parse(this.props.state.dob))/30550000000);
+    return isNaN(age) ? 0 : age;
   }
+
+  calculateHAgeAcu = () => {
+    const rawAge = ((Date.parse(this.getTodaysDate()) - Date.parse(this.props.state.dob))/30550000000);
+    const age = Math.round((rawAge) * 100) / 100;
+    return isNaN(age) ? 0 : age;
+  }
+
 
   render() {
     const age = this.calculateHAge();
-    const yunr = 60 - this.calculateHAge();
-    const ryunr = Math.round(60 - this.calculateHAge());
+
+    const ytr = 60 - age;
+
+    const acuYTR = Math.round(((60 - this.calculateHAgeAcu()) + Number.EPSILON) * 100) / 100;
     let vesm = 0;
-    switch(ryunr) {
-      case 1:
-        vesm = 12;
-        break;
-      case 2:
-        vesm = 13;
-        break;
-      case 3:
-        vesm = 14;
-        break;
-      case 4:
-        vesm = 15;
-        break;
-      case 5:
-        vesm = 16;
-        break;
-      case 6:
-        vesm = 17;
-        break;
-      case 7:
-        vesm = 18;
-        break;
-      case 8:
-        vesm = 19;
-        break;
-      case 9:
-        vesm = 20;
-        break;
-      case 10:
-        vesm = 21;
-        break;
-      case 11:
-        vesm = 22;
-        break;
-      case 12:
-        vesm = 23;
-        break;
-      case 13:
-        vesm = 24;
-        break;
-      case 14:
-        vesm = 25;
-        break;
-      case 15:
-        vesm = 26;
-        break;
-      case 16:
-        vesm = 27;
-        break;
-      case 17:
-        vesm = 28;
-        break;
-      case 18:
-        vesm = 29;
-        break;
-      case 19:
-        vesm = 30;
-        break;
-      case 20:
-        vesm = 31;
-        break;
-      case 21:
-        vesm = 32;
-        break;
-      case 22:
-        vesm = 33;
-        break;
-      case 23:
-        vesm = 34;
-        break;
-      case 24:
-        vesm = 35;
-        break;
-      case 25:
-        vesm = 36;
-        break;
-      default:
-        vesm = 36;
-        break;
-    }
-    const strpay = (this.props.state.bs * 1445).toString();
-    const fpay = strpay.substring(0,2) + "," + strpay.substring(2,5) + "." + strpay.substring(5,7);
-
-    const strmgc = (strpay * 0.08555).toString();
-    const mgc = strmgc.substring(0,1) + "," + strmgc.substring(1,4) + "." + strmgc.substring(4,6);
-
-    const viastr = (vesm * this.props.state.bs).toString();
-    const via = viastr.substring(0,3) + "," + viastr.substring(3,viastr.length);
-
-    let gctstr = 0;
-    if(ryunr >= 3) {
-      gctstr = (36 * strmgc).toString();
+    if (acuYTR > 1 && acuYTR < 1.9999999999) {
+      vesm = 12
+    } else if (acuYTR > 2 && acuYTR < 2.9999999999) {
+      vesm = 13;
+    } else if (acuYTR > 3 && acuYTR < 3.9999999999) {
+      vesm = 14;
+    } else if (acuYTR > 4 && acuYTR < 4.9999999999) {
+      vesm = 15;
+    } else if (acuYTR > 5 && acuYTR < 5.9999999999) {
+      vesm = 16;
+    } else if (acuYTR > 6 && acuYTR < 6.9999999999) {
+      vesm = 17;
+    } else if (acuYTR > 7 && acuYTR < 7.9999999999) {
+      vesm = 18;
+    } else if (acuYTR > 8 && acuYTR < 8.9999999999) {
+      vesm = 19;
+    } else if (acuYTR > 9 && acuYTR < 9.9999999999) {
+      vesm = 20;
+    } else if (acuYTR > 10 && acuYTR < 10.9999999999) {
+      vesm = 21;
+    } else if (acuYTR > 11 && acuYTR < 11.9999999999) {
+      vesm = 22;
+    } else if (acuYTR > 12 && acuYTR < 12.9999999999) {
+      vesm = 23;
+    } else if (acuYTR > 13 && acuYTR < 13.9999999999) {
+      vesm = 24;
+    } else if (acuYTR > 14 && acuYTR < 14.9999999999) {
+      vesm = 25;
+    } else if (acuYTR > 15 && acuYTR < 15.9999999999) {
+      vesm = 26;
+    } else if (acuYTR > 16 && acuYTR < 16.9999999999) {
+      vesm = 27;
+    } else if (acuYTR > 17 && acuYTR < 17.9999999999) {
+      vesm = 28;
+    } else if (acuYTR > 18 && acuYTR < 18.9999999999) {
+      vesm = 29;
+    } else if (acuYTR > 19 && acuYTR < 19.9999999999) {
+      vesm = 30;
+    } else if (acuYTR > 20 && acuYTR < 20.9999999999) {
+      vesm = 31;
+    } else if (acuYTR > 21 && acuYTR < 21.9999999999) {
+      vesm = 32;
+    } else if (acuYTR > 22 && acuYTR < 22.9999999999) {
+      vesm = 33;
+    } else if (acuYTR > 23 && acuYTR < 23.9999999999) {
+      vesm = 34;
+    } else if (acuYTR > 24 && acuYTR < 24.9999999999) {
+      vesm = 35;
+    } else if (acuYTR > 25 && acuYTR < 25.9999999999) {
+      vesm = 36;
+    } else if (acuYTR > 26) {
+      vesm = 36;
     } else {
-      gctstr = (yunr * 12 * strmgc).toString();
+      vesm = 0;
     }
-    const gct = gctstr.substring(0,2) + "," + gctstr.substring(2,5);
+    const gosiSalary = isNaN(this.props.state.bs * 1.25) ? 0 : this.props.state.bs * 1.25;
+    const gosiCont = Math.round(((gosiSalary * 0.09) + Number.EPSILON) * 100) / 100;
 
-    const gcstr = (parseInt(gctstr.substring(0,5)) + parseInt(viastr)).toString();
-    const gc = gcstr.substring(0,3) + "," + gcstr.substring(3,6);
+    const via = Math.round(((gosiSalary * vesm) + Number.EPSILON) * 100) / 100;
+    let gtu = 0;
+    if (acuYTR >= 3) {
+      gtu = Math.round(((36 * gosiCont) + Number.EPSILON) * 100) / 100;
+    } else {
+      gtu = Math.round(((acuYTR * 12 * gosiCont) + Number.EPSILON) * 100) / 100;
+    }
+    let ia = 0;
+    const viaGtu = via + gtu;
+    if(viaGtu > 0 && viaGtu < 300000) {
+      ia = 300000;
+    } else if (viaGtu > 300000 && viaGtu < 700000) {
+      ia = Math.round((viaGtu + Number.EPSILON) * 100) / 100;
+    } else if (viaGtu > 700000) {
+      ia = 700000;
+    }
+
+    const medCov = 5;
+
     return (
-      <div className="pt4">
-        <article className='br3 ba black b--black k-10 mv4 w-90 w-90-m w-50-l mw6 shadow-5 center'>
-          <main className="pa4 black-80">
-            <div className="measure">
-              <fieldset id="input" className="ba b--transparent ph0 mh0">
-                <label className="f3 fw6 mh0">Calculation Report</label>
-                <div className="mt3">
-                  <p className="db fw6 lh-copy f6 tl b dim">Hejiri Age: <strong className="white b">{`${age}`}</strong></p>
-                  <p className="db fw6 lh-copy f6 tl dim">Years until normal retirement: <strong className="white b ">{`${yunr}`}</strong></p>
-                  <p className="db fw6 lh-copy f6 tl dim">Rounded years until normal retirement: <strong className="white b ">{`${ryunr}`}</strong></p>
-                  <p className="db fw6 lh-copy f6 tl dim">VES Multiples: <strong className="white b">{`${vesm}`}</strong></p>
-                  <p className="db fw6 lh-copy f6 tl dim">Fixed Pay: <strong className="white b">{`${fpay}`} SAR</strong></p>
-                  <p className="db fw6 lh-copy f6 tl dim">Monthly GOSI Contributions: <strong className="white b ">{`${mgc}`} SAR</strong></p>
-                  <p className="db fw6 lh-copy f6 tl dim">VES Incentive Award: <strong className="white b">{`${via}`} SAR</strong></p>
-                  <p className="db fw6 lh-copy f6 tl dim">GOSI Contributions Top Up (9%): <strong className="white b ">{`${gct}`} SAR</strong></p>
-                <label className="f3 fw6 mh0">Conclusion Report</label>
-                  <p className="db fw6 lh-copy f6 tl b dim">Golden Check: <strong className="yellow b">{`${gc}`} SAR</strong></p>
-                  <p className="db fw6 lh-copy f6 tl dim">Medical Coverage (Self & Dependents): <strong className="yellow  b">{`5`} Years</strong></p>
+      <div className="pt5">
+        <div className='Pattern br3 black k-10 mv3 w-70 w-70-m w-50-l mw7 shadow-1 center w3-border-green w3-leftbar w3-rightbar w3-white'>
+          <h1 className="b f3">Your Information</h1>
+        </div>
+        <div className='Pattern br3 black k-10 mv3 w-70 w-70-m w-50-l mw7 shadow-1 center w3-border-green w3-leftbar w3-rightbar w3-white'>
+            <ul className="w3-ul w3-card-2 w3-center" style={{ width: "100%" }}>
+              <li>
+                <h6 className="f4 grow w3-animate-right">
+                  <img src={hage} alt="" className="w3-bar-item w3-square" style={{ width:"60px" }}/>
+                    <br/>
+                    <span style={{fontSize: "1rem", textAlign: "justify"}} className="w3-bar-item">Hijri Age &#8594;  <strong>{age} yrs</strong></span>
+                </h6>
+              </li>
+              <li>
+                <h6 className="f4 grow w3-animate-right">
+                  <img src={retire} alt="" className="w3-bar-item w3-square" style={{ width:"60px" }}/>
+                    <br/>
+                    <span style={{fontSize: "1rem", textAlign: "justify"}} className="w3-bar-item">Years to Retirement &#8594;  <strong>{isNaN(ytr) ? "0 yrs" : age > 0 ? ytr > 0 ? ytr + " yrs" : "retired" : "0 yrs"}</strong></span>
+                </h6>
+              </li>
+              <li>
+                <h6 className="f4 grow w3-animate-right">
+                  <img src={salary} alt="" className="w3-bar-item w3-square w3-animate-right" style={{ width:"70px" }}/>
+                    <br/>
+                    <span style={{fontSize: "1rem", textAlign: "justify"}} className="w3-bar-item">GOSI-Eligible Salary &#8594;  <strong>{gosiSalary} &#65020;</strong></span>
+                </h6>
+              </li>
+              <li>
+                <h6 className="f4 grow w3-animate-right">
+                  <img src={gosi} alt="" className="w3-bar-item w3-square" style={{ width:"70px" }}/>
+                    <br/>
+                    <span style={{fontSize: "1rem", textAlign: "justify"}} className="w3-bar-item">Monthly GOSI Contributions &#8594;  <strong>{isNaN(gosiCont) ? 0 : gosiCont} &#65020;</strong></span>
+                </h6>
+              </li>
+            </ul>
+        </div>
+        <div className='Pattern br3 black k-10 mv3 w-70 w-70-m w-50-l mw7 shadow-1 center w3-border-green w3-leftbar w3-rightbar w3-white'>
+          <h1 className="b f3">Your Irfan Benefits</h1>
+        </div>
+        <div className='Pattern br3 black k-10 mv3 w-70 w-70-m w-50-l mw7 shadow-1 center w3-border-green w3-leftbar w3-rightbar w3-white'>
+            <ul className="w3-ul w3-card-2 w3-center" style={{ width: "100%" }}>
+              <li>
+                <h6 className="f4 grow w3-animate-right">
+                  <img src={award} alt="" className="w3-bar-item w3-square" style={{ width:"70px" }}/>
+                    <br/>
+                    <span style={{fontSize: "1rem", textAlign: "justify"}} className="w3-bar-item">Irfan Award &#8594;  <strong>{ia > 0 ? ia.toString().substring(0,3) + "," + ia.toString().substring(3,ia.length) : ia} &#65020;</strong></span>
+                </h6>
+              </li>
+              <li>
+                <h6 className="f4 grow w3-animate-right">
+                  <img src={hc} alt="" className="w3-bar-item w3-square" style={{ width:"60px" }}/>
+                    <br/>
+                    <span  style={{fontSize: "1rem", textAlign: "justify"}}className="w3-bar-item">Medical Coverage &#8594;  <strong>{ia > 0 ? medCov : 0} yrs</strong></span>
+                </h6>
+              </li>
+              <li>
+                <div
+                  style={{fontSize: "0.7rem", textAlign: "justify"}}
+                  className="b w3-panel w3-pale-red w3-leftbar w3-border-red">
+                  <p>Any estimate figures generated by this tool are not final. Final Irfan Award will only be calculated by official and approved applications.</p>
                 </div>
-              </fieldset>
-              <div>
+              </li>
+            </ul>
+          </div>
+          <div className='Pattern br3 black k-10 mv3 w-70 w-70-m w-50-l mw7 shadow-1 center w3-border-green w3-leftbar w3-rightbar w3-white'>
+            <h1 className="b f3">Options</h1>
+          </div>
+          <div className='Pattern br3 black k-10 mv3 w-70 w-70-m w-50-l mw7 shadow-1 center w3-border-green w3-leftbar w3-rightbar w3-white'>
+            <div className="ma2 pa2">
+              <input
+                onClick={this.onBack}
+                className="b pa3 pv1 mr2 input-reset ba b--black black bg-transparent grow pointer f6 dib"
+                type="submit"
+                value="&#8592;"/>
                 <input
-                  onClick={this.onBack}
-                  className="b pa3 pv1 mr2 input-reset ba b--black black bg-transparent grow pointer f6 dib"
+                  onClick={this.onSubmitInput}
+                  className="b pa3 pv1 mr2 input-reset ba b--black black w3-red w3-hover-red bg-transparent grow pointer f6 dib"
                   type="submit"
-                  value="Back"/>
-                  <input
-                    onClick={this.onBack}
-                    className="b pa3 pv1 input-reset ba b--black white bg-red grow pointer f6 dib"
-                    type="submit"
-                    value="Generate PDF"/></div>
+                  value="Generate PDF"/>
             </div>
-          </main>
-        </article>
+          </div>
       </div>
     );
   }
