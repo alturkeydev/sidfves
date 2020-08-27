@@ -8,6 +8,9 @@ import award from './award.png';
 import retire from './retire.png';
 import salary from './salary.png';
 import applogo from './applogo.png';
+import vialogo from './vialogo.png';
+import veslogo from './veslogo.png';
+import gtulogo from './gtulogo.png';
 
 const styles = StyleSheet.create({
   page: {
@@ -32,7 +35,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
     fontFamily: 'Courier',
-    fontSize: 26,
+    fontSize: 24,
     paddingTop: 10,
     paddingBottom: 10,
     borderStyle: 'groove',
@@ -56,8 +59,8 @@ const styles = StyleSheet.create({
   },
   footer: {
     fontFamily: "Courier",
-    fontSize: 11,
-    paddingTop: 100,
+    fontSize: 12,
+    paddingTop: 50,
   },
   link: {
     textDecoration: 'none',
@@ -210,7 +213,7 @@ class Report extends React.Component {
   }
 
   GeneratePDF = () => {
-    const { bs, dob, age, ytr, gosiSalary, gosiCont, ia, medCov } = this.performCalculations();
+    const { bs, dob, age, ytr, gosiSalary, gosiCont, ia, medCov, vesm, via, gtu } = this.performCalculations();
     const now = new Date().toString();
     return (
       <div className="b pa3 ml1 pv1 input-reset ba b--black black w3-red w3-hover-red bg-transparent grow pointer f6 dib">
@@ -225,10 +228,10 @@ class Report extends React.Component {
                 <Text style={styles.body}>Date of Birth-:</Text>
                 <Text style={styles.imp}>{`${dob}`}</Text>
                 <Text style={styles.body}>Basic Info Summary-:</Text>
-                <Text style={styles.imp}>{`The subject is ${age} years old by Hijri calendar, and is expected to work for ${ytr} more years. Furthermore, the GOSI-eligible salary for the given subject is estimated to be ${gosiSalary} SAR, and the monthly GOSI deductibles is estimated to be ${gosiCont} SAR per month. This concludes the summary.`}</Text>
+                <Text style={styles.imp}>{`The subject is ${age} years old by Hijri calendar, and is expected to work for ${ytr} more years. Furthermore, the calculated VES index is ${vesm}, the GOSI-eligible Salary for the given subject is estimated to be ${gosiSalary} SAR, and the monthly GOSI deductibles is estimated to be ${gosiCont} SAR per month. Finally, the computed VES Incentive Award is ${via} SAR with GOSI Contributions Top Up of ${gtu} SAR. This concludes the summary.`}</Text>
                 <Text style={styles.body}>Irfan Benefits-:</Text>
-                <Text style={styles.imp}>{`The subject estimated Irfan Award is ${ia.toString().substring(0,3) + "," + ia.toString().substring(3,ia.toString().length)} SAR. Moreover, the subject is entitled to ${medCov} years of medical coverage. This concludes the benefits.`}</Text>
-                <Text style={styles.footer}>This report was generated using <Link style={styles.link} src="https://sidfves.info/">Irfan Check Quick-Tool</Link> ©. Do you need <Link style={styles.link} src="mailto:hi@yousefalturkey.sa">help</Link>?</Text>
+                <Text style={styles.imp}>{`The subject estimated Irfan Award is ${ia.toString().substring(0,3) + "," + ia.toString().substring(3,ia.toString().length)} SAR. Moreover, the subject is entitled to ${medCov} years of medical coverage. This concludes the benefits summary.`}</Text>
+                <Text style={styles.footer}>This report was generated using <Link style={styles.link} src="https://sidfves.info/">Irfan Check Quick-Tool</Link> ©.</Text>
               </View>
             </Page>
           </Document>
@@ -240,7 +243,7 @@ class Report extends React.Component {
   }
 
   render() {
-    const { age, ytr, gosiSalary, gosiCont, ia, medCov } = this.performCalculations();
+    const { age, ytr, gosiSalary, gosiCont, ia, medCov, vesm, via, gtu } = this.performCalculations();
     return (
       <div className="pt5">
         <div className='br3 black k-10 mv3 w-80 w-80-m w-50-l mw7 shadow-1 center w3-border-green w3-leftbar w3-rightbar w3-white'>
@@ -249,31 +252,52 @@ class Report extends React.Component {
         <div className='br3 black k-10 mv3 w-80 w-80-m w-50-l mw7 shadow-1 center w3-border-green w3-leftbar w3-rightbar w3-white'>
             <ul className="w3-ul w3-card-2 w3-center" style={{ width: "100%" }}>
               <li>
-                <h6 className="f4 grow">
+                <h6 className="f4">
                   <img src={hage} alt="" className="w3-bar-item w3-square" style={{ width:"60px" }}/>
                     <br/>
                     <span style={{fontSize: "1rem", textAlign: "justify"}} className="w3-bar-item">Hijri Age &#8594;  <strong>{age} yrs</strong></span>
                 </h6>
               </li>
               <li>
-                <h6 className="f4 grow">
+                <h6 className="f4">
                   <img src={retire} alt="" className="w3-bar-item w3-square" style={{ width:"60px" }}/>
                     <br/>
                     <span style={{fontSize: "1rem", textAlign: "justify"}} className="w3-bar-item">Years to Retirement &#8594;  <strong>{isNaN(ytr) ? "0 yrs" : age > 0 ? ytr > 0 ? ytr + " yrs" : "retired" : "0 yrs"}</strong></span>
                 </h6>
               </li>
               <li>
-                <h6 className="f4 grow">
+                <h6 className="f4">
+                  <img src={veslogo} alt="" className="w3-bar-item w3-square" style={{ width:"60px" }}/>
+                    <br/>
+                    <span style={{fontSize: "1rem", textAlign: "justify"}} className="w3-bar-item">VES Multiples &#8594;  <strong>{age > 0 ? vesm : 0}</strong></span>
+                </h6>
+              </li>
+              <li>
+                <h6 className="f4">
                   <img src={salary} alt="" className="w3-bar-item w3-square" style={{ width:"70px" }}/>
                     <br/>
                     <span style={{fontSize: "1rem", textAlign: "justify"}} className="w3-bar-item">GOSI-Eligible Salary &#8594;  <strong>{gosiSalary} &#65020;</strong></span>
                 </h6>
               </li>
               <li>
-                <h6 className="f4 grow">
+                <h6 className="f4">
                   <img src={gosi} alt="" className="w3-bar-item w3-square" style={{ width:"70px" }}/>
                     <br/>
                     <span style={{fontSize: "1rem", textAlign: "justify"}} className="w3-bar-item">Monthly GOSI Cuts &#8594;  <strong>{isNaN(gosiCont) ? 0 : gosiCont} &#65020;</strong></span>
+                </h6>
+              </li>
+              <li>
+                <h6 className="f4">
+                  <img src={vialogo} alt="" className="w3-bar-item w3-square" style={{ width:"60px" }}/>
+                    <br/>
+                    <span style={{fontSize: "1rem", textAlign: "justify"}} className="w3-bar-item">VES Incentive Award &#8594;  <strong>{vesm <= 0 ? "0" : via} &#65020;</strong></span>
+                </h6>
+              </li>
+              <li>
+                <h6 className="f4">
+                  <img src={gtulogo} alt="" className="w3-bar-item w3-square" style={{ width:"60px" }}/>
+                    <br/>
+                    <span style={{fontSize: "1rem", textAlign: "justify"}} className="w3-bar-item">GOSI Contributions Top Up (9%) &#8594;  <strong>{gtu} &#65020;</strong></span>
                 </h6>
               </li>
             </ul>
@@ -284,14 +308,14 @@ class Report extends React.Component {
         <div className='br3 black k-10 mv3 w-80 w-80-m w-50-l mw7 shadow-1 center w3-border-green w3-leftbar w3-rightbar w3-white'>
             <ul className="w3-ul w3-card-2 w3-center" style={{ width: "100%" }}>
               <li>
-                <h6 className="f4 grow">
+                <h6 className="f4">
                   <img src={award} alt="" className="w3-bar-item w3-square" style={{ width:"70px" }}/>
                     <br/>
                     <span style={{fontSize: "1rem", textAlign: "justify"}} className="w3-bar-item">Irfan Award &#8594;  <strong>{ia > 0 ? ia.toString().substring(0,3) + "," + ia.toString().substring(3,ia.length) : ia} &#65020;</strong></span>
                 </h6>
               </li>
               <li>
-                <h6 className="f4 grow">
+                <h6 className="f4">
                   <img src={hc} alt="" className="w3-bar-item w3-square" style={{ width:"60px" }}/>
                     <br/>
                     <span  style={{fontSize: "1rem", textAlign: "justify"}}className="w3-bar-item">Medical Coverage &#8594;  <strong>{ia > 0 ? medCov : 0} yrs</strong></span>
