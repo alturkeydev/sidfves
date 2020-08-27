@@ -1,4 +1,5 @@
 import React from 'react';
+import { PDFDownloadLink, Page, Text, View, Document, StyleSheet, Link, Image } from '@react-pdf/renderer'
 import './Report.css';
 import hage from './hage.png';
 import gosi from './gosi.png';
@@ -6,6 +7,64 @@ import hc from './hc.png';
 import award from './award.png';
 import retire from './retire.png';
 import salary from './salary.png';
+import applogo from './applogo.png';
+
+const styles = StyleSheet.create({
+  page: {
+    display: 'flex',
+    flexDirection: 'column',
+    backgroundColor: '#E4E4E4'
+  },
+  section: {
+    margin: 20,
+    padding: 20,
+    flexGrow: 1,
+    textAlign: "center"
+  },
+  img: {
+    width: '50%',
+    height: 150,
+    display: 'block',
+    marginLeft: 'auto',
+    marginRight: 'auto',
+  },
+  heading: {
+    fontWeight: 'bold',
+    textAlign: 'center',
+    fontFamily: 'Courier',
+    fontSize: 26,
+    paddingTop: 10,
+    paddingBottom: 10,
+    borderStyle: 'groove',
+    borderWidth: 2,
+
+  },
+  body: {
+    fontWeight: 'bold',
+    fontFamily: 'Courier',
+    fontSize: 16,
+    paddingTop: 15,
+    textAlign: "left"
+  },
+  imp: {
+    color: '#0aab65',
+    fontWeight: 'bold',
+    fontFamily: 'Courier',
+    fontSize: 14,
+    paddingTop: 15,
+    textAlign: "justify"
+  },
+  footer: {
+    fontFamily: "Courier",
+    fontSize: 9,
+    paddingTop: 100,
+  },
+  link: {
+    textDecoration: 'none',
+    fontWeight: 'bold',
+    color: '#0aab65',
+  }
+});
 
 class Report extends React.Component {
 
@@ -38,13 +97,31 @@ class Report extends React.Component {
     return isNaN(age) ? 0 : age;
   }
 
+  performCalculations = () => {
+    let result = {
+      bs: this.props.state.bs,
+      dob: this.props.state.dob,
+      age: 0,
+      ytr: 0,
+      acuYTR: 0,
+      vesm: 0,
+      gosiSalary: 0,
+      gosiCont: 0,
+      via: 0,
+      gtu: 0,
+      ia: 0,
+      viaGtu: 0,
+      medCov: 0
+    };
 
-  render() {
     const age = this.calculateHAge();
+    result.age = age;
 
     const ytr = 60 - age;
+    result.ytr = ytr;
 
     const acuYTR = Math.round(((60 - this.calculateHAgeAcu()) + Number.EPSILON) * 100) / 100;
+    result.acuYTR = acuYTR;
     let vesm = 0;
     if (acuYTR > 1 && acuYTR < 1.9999999999) {
       vesm = 12
@@ -101,16 +178,21 @@ class Report extends React.Component {
     } else {
       vesm = 0;
     }
+    result.vesm = vesm;
     const gosiSalary = isNaN(this.props.state.bs * 1.25) ? 0 : this.props.state.bs * 1.25;
+    result.gosiSalary = gosiSalary;
     const gosiCont = Math.round(((gosiSalary * 0.09) + Number.EPSILON) * 100) / 100;
+    result.gosiCont = gosiCont;
 
     const via = Math.round(((gosiSalary * vesm) + Number.EPSILON) * 100) / 100;
+    result.via = via;
     let gtu = 0;
     if (acuYTR >= 3) {
       gtu = Math.round(((36 * gosiCont) + Number.EPSILON) * 100) / 100;
     } else {
       gtu = Math.round(((acuYTR * 12 * gosiCont) + Number.EPSILON) * 100) / 100;
     }
+    result.gtu = gtu;
     let ia = 0;
     const viaGtu = via + gtu;
     if(viaGtu > 0 && viaGtu < 300000) {
@@ -120,9 +202,45 @@ class Report extends React.Component {
     } else if (viaGtu > 700000) {
       ia = 700000;
     }
-
+    result.ia = ia;
     const medCov = 5;
+    result.medCov = medCov;
 
+    return result;
+  }
+
+  GeneratePDF = () => {
+    const { bs, dob, age, ytr, gosiSalary, gosiCont, ia, medCov } = this.performCalculations();
+    const now = new Date().toString();
+    return (
+      <div className="b pa3 ml1 pv1 input-reset ba b--black black w3-red w3-hover-red bg-transparent grow pointer f6 dib">
+        <PDFDownloadLink document={
+          <Document>
+            <Page size="A4" style={styles.page}>
+              <View style={styles.section}>
+                <Image style={styles.img} src={applogo}></Image>
+                <Text style={styles.heading}>Irfan Check Report</Text>
+                <Text style={styles.body}>Basic Salary-:</Text>
+                <Text style={styles.imp}>{`${bs} SAR`}</Text>
+                <Text style={styles.body}>Date of Birth-:</Text>
+                <Text style={styles.imp}>{`${dob}`}</Text>
+                <Text style={styles.body}>Basic Info Summary-:</Text>
+                <Text style={styles.imp}>{`The subject is ${age} years old by Hijri calendar, and is expected to work for ${ytr} more years. Furthermore, the GOSI-eligible salary for the given subject is estimated to be ${gosiSalary} SAR, and the monthly GOSI deductibles is estimated to be ${gosiCont} SAR per month. This concludes the summary.`}</Text>
+                <Text style={styles.body}>Irfan Benefits-:</Text>
+                <Text style={styles.imp}>{`The subject estimated Irfan Award is ${ia.toString().substring(0,3) + "," + ia.toString().substring(3,ia.toString().length)} SAR. Moreover, the subject is entitled to ${medCov} years of medical coverage. This concludes the benefits.`}</Text>
+                <Text style={styles.footer}>This report was generated using <Link style={styles.link} src="https://sidfves.info/">Irfan Check Quick-Tool</Link> ©. Do you need <Link style={styles.link} src="mailto:hi@yousefalturkey.sa">help</Link>?</Text>
+              </View>
+            </Page>
+          </Document>
+        } fileName={`IC_Report-DATE-${now.substring(8,10)}-${now.substring(4,7).toUpperCase()}-${now.substring(11,15)}-TIME-${now.substring(16,18)}-${now.substring(19,21)}-${now.substring(22,24)}`}>
+          {({ blob, url, loading, error }) => (loading ? 'Loading document...' : 'Generate PDF')}
+        </PDFDownloadLink>
+      </div>
+    )
+  }
+
+  render() {
+    const { age, ytr, gosiSalary, gosiCont, ia, medCov } = this.performCalculations();
     return (
       <div className="pt5">
         <div className='Pattern br3 black k-10 mv3 w-80 w-80-m w-50-l mw7 shadow-1 center w3-border-green w3-leftbar w3-rightbar w3-white'>
@@ -203,11 +321,7 @@ class Report extends React.Component {
                 className="b pa3 pv1 mr2 input-reset ba b--black black bg-transparent grow pointer f6 dib"
                 type="submit"
                 value="&#8592;"/>
-                <input
-                  onClick={this.onSubmitInput}
-                  className="b pa3 pv1 mr2 input-reset ba b--black black w3-red w3-hover-red bg-transparent grow pointer f6 dib"
-                  type="submit"
-                  value="Generate PDF"/>
+                {this.GeneratePDF()}
             </div>
           </div>
       </div>
