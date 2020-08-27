@@ -262,7 +262,7 @@ class Report extends React.Component {
                 <h6 className="f4">
                   <img src={retire} alt="" className="w3-bar-item w3-square" style={{ width:"60px" }}/>
                     <br/>
-                    <span style={{fontSize: "1rem", textAlign: "justify"}} className="w3-bar-item">Years to Retirement &#8594;  <strong>{isNaN(ytr) ? "0 yrs" : age > 0 ? ytr > 0 ? ytr + " yrs" : "retired" : "0 yrs"}</strong></span>
+                    <span style={{fontSize: "1rem", textAlign: "justify"}} className="w3-bar-item">Years to Retirement &#8594;  <strong>{ytr} yrs</strong></span>
                 </h6>
               </li>
               <li>
