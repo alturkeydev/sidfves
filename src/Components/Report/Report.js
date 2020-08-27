@@ -228,7 +228,7 @@ class Report extends React.Component {
                 <Text style={styles.body}>Date of Birth-:</Text>
                 <Text style={styles.imp}>{`${dob}`}</Text>
                 <Text style={styles.body}>Basic Info Summary-:</Text>
-                <Text style={styles.imp}>{`The subject is ${age} years old by Hijri calendar, and is expected to work for ${ytr} more years. Furthermore, the calculated VES index is ${vesm}, the GOSI-eligible Salary for the given subject is estimated to be ${gosiSalary} SAR, and the monthly GOSI deductibles is estimated to be ${gosiCont} SAR per month. Finally, the computed VES Incentive Award is ${via} SAR with GOSI Contributions Top Up of ${gtu} SAR. This concludes the summary.`}</Text>
+                <Text style={styles.imp}>{`The subject is ${age} years old by Hijri calendar, and is expected to work for ${ytr} more years. Furthermore, the calculated VES index is ${vesm}, the GOSI-eligible Salary for the given subject is estimated to be ${gosiSalary} SAR, and the monthly GOSI deductibles is estimated to be ${gosiCont} SAR per month. Finally, the computed VES Incentive Award is ${via} SAR with GOSI Contributions Top Up (9%) of ${gtu} SAR. This concludes the summary.`}</Text>
                 <Text style={styles.body}>Irfan Benefits-:</Text>
                 <Text style={styles.imp}>{`The subject estimated Irfan Award is ${ia.toString().substring(0,3) + "," + ia.toString().substring(3,ia.toString().length)} SAR. Moreover, the subject is entitled to ${medCov} years of medical coverage. This concludes the benefits summary.`}</Text>
                 <Text style={styles.footer}>This report was generated using <Link style={styles.link} src="https://sidfves.info/">Irfan Check Quick-Tool</Link> ©.</Text>
