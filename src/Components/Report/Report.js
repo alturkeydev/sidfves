@@ -233,7 +233,7 @@ class Report extends React.Component {
             </Page>
           </Document>
         } fileName={`IC_Report-DATE-${now.substring(8,10)}-${now.substring(4,7).toUpperCase()}-${now.substring(11,15)}-TIME-${now.substring(16,18)}-${now.substring(19,21)}-${now.substring(22,24)}`}>
-          {({ blob, url, loading, error }) => (loading ? 'Loading document...' : 'Generate PDF')}
+          {({ blob, url, loading, error }) => (loading ? 'Generating PDF...' : 'Generate PDF')}
         </PDFDownloadLink>
       </div>
     )
