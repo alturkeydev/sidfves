@@ -49,14 +49,14 @@ class Calculator extends React.Component {
               <div>
                 <input
                   onClick={this.onSubmitInput}
-                  className="b pa3 pv1 mr2 input-reset ba b--black black bg-transparent grow pointer f6 dib"
+                  className="b pa3 pv1 pt7 w3-button w3-round w3-hover-green grow pointer f4"
                   type="submit"
                   id="submitButton"
                   value="Generate Report"/>
                 <div
-                  style={{fontSize: "0.7rem", textAlign: "justify"}}
+                  style={{fontSize: "0.8rem", textAlign: "justify"}}
                   className="w3-panel w3-pale-yellow w3-leftbar w3-border-yellow">
-                  <p>Not affiliated with <a className="dim hover-black b link" href="https://www.sidf.gov.sa/en/Pages/Home.aspx" target="_blank"  rel="noopener noreferrer" style={{textDecoration: "none"}}>Saudi Industrial Development Fund.</a></p>
+                  <p>Not affiliated nor endorsed by <a className="dim hover-black b link" href="https://www.sidf.gov.sa/en/Pages/Home.aspx" target="_blank"  rel="noopener noreferrer" style={{textDecoration: "none"}}>Saudi Industrial Development Fund.</a></p>
                 </div>
               </div>
             </div>

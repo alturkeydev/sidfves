@@ -13,6 +13,7 @@ import veslogo from './veslogo.png';
 import gtulogo from './gtulogo.png';
 
 const styles = StyleSheet.create({
+
   page: {
     display: 'flex',
     flexDirection: 'column',
@@ -26,7 +27,7 @@ const styles = StyleSheet.create({
   },
   img: {
     width: '50%',
-    height: 150,
+    height: 100,
     display: 'block',
     marginLeft: 'auto',
     marginRight: 'auto',
@@ -50,22 +51,35 @@ const styles = StyleSheet.create({
     textAlign: "left"
   },
   imp: {
-    color: '#0aab65',
     fontWeight: 'bold',
     fontFamily: 'Courier',
     fontSize: 18,
     paddingTop: 15,
     textAlign: "justify"
   },
+  impC: {
+    color: '#0aab65',
+    fontWeight: 'bold',
+    fontFamily: 'Courier',
+    fontSize: 19,
+    paddingTop: 15,
+    textAlign: "justify"
+  },
   footer: {
     fontFamily: "Courier",
     fontSize: 12,
-    paddingTop: 50,
+    paddingTop: 30,
+  },
+  date: {
+    fontFamily: "Courier",
+    fontSize: 8,
+    paddingBottom: 10,
+    textAlign: "left"
   },
   link: {
     textDecoration: 'none',
     fontWeight: 'bold',
-    color: '#0aab65',
+    color: '#02c771',
   }
 });
 
@@ -109,9 +123,13 @@ class Report extends React.Component {
       acuYTR: 0,
       vesm: 0,
       gosiSalary: 0,
+      gosiSalarystr: '',
       gosiCont: 0,
+      gosiContstr: '',
       via: 0,
+      viastr: '',
       gtu: 0,
+      gtustr: '',
       ia: 0,
       viaGtu: 0,
       medCov: 0
@@ -184,11 +202,52 @@ class Report extends React.Component {
     result.vesm = vesm;
     const gosiSalary = isNaN(this.props.state.bs * 1.25) ? 0 : this.props.state.bs * 1.25;
     result.gosiSalary = gosiSalary;
+    let gosiSalarystr = '';
+    const gosiSalaryL = gosiSalary.toString().length;
+    if(gosiSalary > 999999) {
+      gosiSalarystr = gosiSalary.toString().substring(0,1) + "," + gosiSalary.toString().substring(1,4) + "," + gosiSalary.toString().substring(4,gosiSalaryL);
+    } else if(gosiSalary > 99999) {
+      gosiSalarystr = gosiSalary.toString().substring(0,3) + "," + gosiSalary.toString().substring(3,gosiSalaryL);
+    } else if (gosiSalary > 9999) {
+      gosiSalarystr = gosiSalary.toString().substring(0,2) + "," + gosiSalary.toString().substring(2,gosiSalaryL);
+    } else if (gosiSalary > 999) {
+      gosiSalarystr = gosiSalary.toString().substring(0,1) + "," + gosiSalary.toString().substring(1,gosiSalaryL);
+    } else {
+      gosiSalarystr = gosiSalary.toString();
+    }
+    result.gosiSalarystr = gosiSalarystr;
     const gosiCont = Math.round(((gosiSalary * 0.09) + Number.EPSILON) * 100) / 100;
     result.gosiCont = gosiCont;
-
+    let gosiContstr = '';
+    const gosiContL = gosiCont.toString().length;
+    if(gosiCont > 999999) {
+      gosiContstr = gosiSalary.toString().substring(0,1) + "," + gosiSalary.toString().substring(1,4) + "," + gosiSalary.toString().substring(4,gosiSalaryL);
+    } else if(gosiCont > 99999) {
+      gosiContstr = gosiCont.toString().substring(0,3) + "," + gosiCont.toString().substring(3,gosiContL);
+    } else if (gosiCont > 9999) {
+      gosiContstr = gosiCont.toString().substring(0,2) + "," + gosiCont.toString().substring(2,gosiContL);
+    } else if (gosiCont > 999) {
+      gosiContstr = gosiCont.toString().substring(0,1) + "," + gosiCont.toString().substring(1,gosiContL);
+    } else {
+      gosiContstr = gosiCont.toString();
+    }
+    result.gosiContstr = gosiContstr;
     const via = Math.round(((this.props.state.bs * vesm) + Number.EPSILON) * 100) / 100;
     result.via = via;
+    let viastr = '';
+    const viaL = via.toString().length;
+    if(via > 999999) {
+      viastr = gosiSalary.toString().substring(0,1) + "," + gosiSalary.toString().substring(1,4) + "," + gosiSalary.toString().substring(4,gosiSalaryL);
+    } else if(via > 99999) {
+      viastr = via.toString().substring(0,3) + "," + via.toString().substring(3,viaL);
+    } else if (via > 9999) {
+      viastr = via.toString().substring(0,2) + "," + via.toString().substring(2,viaL);
+    } else if (via > 999) {
+      viastr = via.toString().substring(0,1) + "," + via.toString().substring(1,viaL);
+    } else {
+      viastr = gosiCont.toString();
+    }
+    result.viastr = viastr;
     let gtu = 0;
     if (acuYTR >= 3) {
       gtu = Math.round(((36 * gosiCont) + Number.EPSILON) * 100) / 100;
@@ -196,6 +255,20 @@ class Report extends React.Component {
       gtu = Math.round(((acuYTR * 12 * gosiCont) + Number.EPSILON) * 100) / 100;
     }
     result.gtu = gtu;
+    let gtustr = '';
+    const gtuL = gtu.toString().length;
+    if(gtu > 999999) {
+      gtustr = gosiSalary.toString().substring(0,1) + "," + gosiSalary.toString().substring(1,4) + "," + gosiSalary.toString().substring(4,gosiSalaryL);
+    } else if(gtu > 99999) {
+      gtustr = gtu.toString().substring(0,3) + "," + gtu.toString().substring(3,gtuL);
+    } else if (gtu > 9999) {
+      gtustr = gtu.toString().substring(0,2) + "," + gtu.toString().substring(2,gtuL);
+    } else if (gtu > 999) {
+      gtustr = gtu.toString().substring(0,1) + "," + gtu.toString().substring(1,gtuL);
+    } else {
+      gtustr = gosiCont.toString();
+    }
+    result.gtustr = gtustr;
     let ia = 0;
     const viaGtu = via + gtu;
     if(viaGtu > 0 && viaGtu < 300000) {
@@ -213,8 +286,11 @@ class Report extends React.Component {
   }
 
   GeneratePDF = () => {
-    const { bs, dob, age, ytr, gosiSalary, gosiCont, ia, medCov, vesm, via, gtu } = this.performCalculations();
+    const { bs, dob, age, ytr, gosiSalarystr, gosiContstr, ia, medCov, vesm, viastr, gtustr } = this.performCalculations();
     const now = new Date().toString();
+    const date = now.substring(8,10) + "-" + now.substring(4,7).toUpperCase() + "-" + now.substring(11,15);
+    const time = now.substring(16,18) + "-" + now.substring(19,21) + "-" + now.substring(22,24);
+    const fileName = `Irfan_Check_Report-DATE-${date}-TIME-${time}`;
     return (
       <div className="b pa3 ml1 pv1 input-reset ba b--black black w3-red w3-hover-red bg-transparent grow pointer f6 dib">
         <PDFDownloadLink document={
@@ -222,20 +298,23 @@ class Report extends React.Component {
             <Page size="A4" style={styles.page}>
               <View style={styles.section}>
                 <Image style={styles.img} src={applogo}></Image>
+                <Text style={styles.date}>DATE: {now.substring(8,10)}-{now.substring(4,7).toUpperCase()}-{now.substring(11,15)}</Text>
+                <Text style={styles.date}>TIME: {now.substring(16,18)}:{now.substring(19,21)}:{now.substring(22,24)}</Text>
                 <Text style={styles.heading}>Irfan Check Report</Text>
                 <Text style={styles.body}>Basic Salary-:</Text>
-                <Text style={styles.imp}>{`${bs} SAR`}</Text>
+                <Text style={styles.imp}>  {bs} SAR</Text>
                 <Text style={styles.body}>Date of Birth-:</Text>
-                <Text style={styles.imp}>{`${dob}`}</Text>
+                <Text style={styles.imp}>  {dob == null ? "no birth date entered" : dob}</Text>
                 <Text style={styles.body}>Basic Info Summary-:</Text>
-                <Text style={styles.imp}>{`The subject is ${age} years old by Hijri calendar, and is expected to work for ${ytr} more years. Furthermore, the calculated VES index is ${vesm}, the GOSI-eligible Salary for the given subject is estimated to be ${gosiSalary} SAR, and the monthly GOSI deductibles is estimated to be ${gosiCont} SAR per month. Finally, the computed VES Incentive Award is ${via} SAR with GOSI Contributions Top Up (9%) of ${gtu} SAR. This concludes the summary.`}</Text>
+                <Text style={styles.imp}>  The subject is <Text style={styles.impC}>{age} years old</Text> by Hijri calendar, and is therefore expected to work for <Text style={styles.impC}>{ytr} more years</Text>. Furthermore, the calculated VES index is <Text style={styles.impC}>{vesm}</Text>, and the GOSI-Eligible Salary for the given subject is estimated to be <Text style={styles.impC}>{gosiSalarystr} SAR
+                </Text>, and the Monthly GOSI Deductible is estimated to be <Text style={styles.impC}>{gosiContstr} SAR per month</Text>. Finally, the computed VES Incentive Award is <Text style={styles.impC}>{viastr} SAR</Text> and GOSI Contributions Top Up (9%) of <Text style={styles.impC}>{gtustr} SAR</Text>.</Text>
                 <Text style={styles.body}>Irfan Benefits-:</Text>
-                <Text style={styles.imp}>{`The subject estimated Irfan Award is ${ia.toString().substring(0,3) + "," + ia.toString().substring(3,ia.toString().length)} SAR. Moreover, the subject is entitled to ${medCov} years of medical coverage. This concludes the benefits summary.`}</Text>
+                <Text style={styles.imp}>  The subject estimated Irfan Award per standard calculations is <Text style={styles.impC}>{ia.toString().substring(0,3) + "," + ia.toString().substring(3,ia.toString().length)} SAR</Text>. Lastly, the subject is entitled to <Text style={styles.impC}>{medCov} years</Text> of Medical Coverage.</Text>
                 <Text style={styles.footer}>This report was generated using <Link style={styles.link} src="https://sidfves.info/">Irfan Check Quick-Tool</Link> ©.</Text>
               </View>
             </Page>
           </Document>
-        } fileName={`IC_Report-DATE-${now.substring(8,10)}-${now.substring(4,7).toUpperCase()}-${now.substring(11,15)}-TIME-${now.substring(16,18)}-${now.substring(19,21)}-${now.substring(22,24)}`}>
+        } fileName={fileName} href={`./${fileName}`} target = "_blank">
           {({ blob, url, loading, error }) => (loading ? 'Generating PDF...' : 'Generate PDF')}
         </PDFDownloadLink>
       </div>
@@ -243,7 +322,7 @@ class Report extends React.Component {
   }
 
   render() {
-    const { age, ytr, gosiSalary, gosiCont, ia, medCov, vesm, via, gtu } = this.performCalculations();
+    const { age, ytr, gosiSalarystr, gosiContstr, ia, medCov, vesm, viastr, gtustr } = this.performCalculations();
     return (
       <div className="pt5">
         <div className='br3 black k-10 mv3 w-80 w-80-m w-50-l mw7 shadow-1 center w3-border-green w3-leftbar w3-rightbar w3-white'>
@@ -252,52 +331,52 @@ class Report extends React.Component {
         <div className='br3 black k-10 mv3 w-80 w-80-m w-50-l mw7 shadow-1 center w3-border-green w3-leftbar w3-rightbar w3-white'>
             <ul className="w3-ul w3-card-2 w3-center" style={{ width: "100%" }}>
               <li>
-                <h6 className="f4">
+                <h6 className="f4 grow">
                   <img src={hage} alt="" className="w3-bar-item w3-square" style={{ width:"60px" }}/>
                     <br/>
                     <span style={{fontSize: "1rem", textAlign: "justify"}} className="w3-bar-item">Hijri Age &#8594;  <strong>{age} yrs</strong></span>
                 </h6>
               </li>
               <li>
-                <h6 className="f4">
+                <h6 className="f4 grow">
                   <img src={retire} alt="" className="w3-bar-item w3-square" style={{ width:"60px" }}/>
                     <br/>
                     <span style={{fontSize: "1rem", textAlign: "justify"}} className="w3-bar-item">Years to Retirement &#8594;  <strong>{isNaN(ytr) ? "0 yrs" : age > 0 ? ytr > 0 ? ytr + " yrs" : "retired" : "0 yrs"}</strong></span>
                 </h6>
               </li>
               <li>
-                <h6 className="f4">
+                <h6 className="f4 grow">
                   <img src={veslogo} alt="" className="w3-bar-item w3-square" style={{ width:"60px" }}/>
                     <br/>
                     <span style={{fontSize: "1rem", textAlign: "justify"}} className="w3-bar-item">VES Multiples &#8594;  <strong>{age > 0 ? vesm : 0}</strong></span>
                 </h6>
               </li>
               <li>
-                <h6 className="f4">
+                <h6 className="f4 grow">
                   <img src={salary} alt="" className="w3-bar-item w3-square" style={{ width:"70px" }}/>
                     <br/>
-                    <span style={{fontSize: "1rem", textAlign: "justify"}} className="w3-bar-item">GOSI-Eligible Salary &#8594;  <strong>{gosiSalary} &#65020;</strong></span>
+                    <span style={{fontSize: "1rem", textAlign: "justify"}} className="w3-bar-item">GOSI-Eligible Salary &#8594;  <strong>{gosiSalarystr} &#65020;</strong></span>
                 </h6>
               </li>
               <li>
-                <h6 className="f4">
+                <h6 className="f4 grow">
                   <img src={gosi} alt="" className="w3-bar-item w3-square" style={{ width:"70px" }}/>
                     <br/>
-                    <span style={{fontSize: "1rem", textAlign: "justify"}} className="w3-bar-item">Monthly GOSI Cuts &#8594;  <strong>{isNaN(gosiCont) ? 0 : gosiCont} &#65020;</strong></span>
+                    <span style={{fontSize: "1rem", textAlign: "justify"}} className="w3-bar-item">Monthly GOSI Cut &#8594;  <strong>{gosiContstr} &#65020;</strong></span>
                 </h6>
               </li>
               <li>
-                <h6 className="f4">
+                <h6 className="f4 grow">
                   <img src={vialogo} alt="" className="w3-bar-item w3-square" style={{ width:"60px" }}/>
                     <br/>
-                    <span style={{fontSize: "1rem", textAlign: "justify"}} className="w3-bar-item">VES Incentive Award &#8594;  <strong>{vesm <= 0 ? "0" : via} &#65020;</strong></span>
+                    <span style={{fontSize: "1rem", textAlign: "justify"}} className="w3-bar-item">VES Incentive Award &#8594;  <strong>{vesm <= 0 ? "0" : viastr} &#65020;</strong></span>
                 </h6>
               </li>
               <li>
-                <h6 className="f4">
+                <h6 className="f4 grow">
                   <img src={gtulogo} alt="" className="w3-bar-item w3-square" style={{ width:"60px" }}/>
                     <br/>
-                    <span style={{fontSize: "1rem", textAlign: "justify"}} className="w3-bar-item">GOSI Contributions Top Up (9%) &#8594;  <strong>{gtu} &#65020;</strong></span>
+                    <span style={{fontSize: "1rem", textAlign: "justify"}} className="w3-bar-item">GOSI Top Up (9%) &#8594;  <strong>{gtustr} &#65020;</strong></span>
                 </h6>
               </li>
             </ul>
@@ -308,14 +387,14 @@ class Report extends React.Component {
         <div className='br3 black k-10 mv3 w-80 w-80-m w-50-l mw7 shadow-1 center w3-border-green w3-leftbar w3-rightbar w3-white'>
             <ul className="w3-ul w3-card-2 w3-center" style={{ width: "100%" }}>
               <li>
-                <h6 className="f4">
+                <h6 className="f4 grow">
                   <img src={award} alt="" className="w3-bar-item w3-square" style={{ width:"70px" }}/>
                     <br/>
                     <span style={{fontSize: "1rem", textAlign: "justify"}} className="w3-bar-item">Irfan Award &#8594;  <strong>{ia > 0 ? ia.toString().substring(0,3) + "," + ia.toString().substring(3,ia.length) : ia} &#65020;</strong></span>
                 </h6>
               </li>
               <li>
-                <h6 className="f4">
+                <h6 className="f4 grow">
                   <img src={hc} alt="" className="w3-bar-item w3-square" style={{ width:"60px" }}/>
                     <br/>
                     <span  style={{fontSize: "1rem", textAlign: "justify"}}className="w3-bar-item">Medical Coverage &#8594;  <strong>{ia > 0 ? medCov : 0} yrs</strong></span>
@@ -342,7 +421,7 @@ class Report extends React.Component {
               </div>
               <input
                 onClick={this.onBack}
-                className="b pa3 pv1 mr2 input-reset ba b--black black bg-transparent grow pointer f6 dib"
+                className="b pa3 pv1 mr2 input-reset ba b--black black bg-hover-white bg-transparent grow pointer f6 dib"
                 type="submit"
                 value="&#8592;"/>
                 {this.GeneratePDF()}
