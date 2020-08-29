@@ -299,7 +299,7 @@ class Report extends React.Component {
               <View style={styles.section}>
                 <Image style={styles.img} src={applogo}></Image>
                 <Text style={styles.date}>DATE: {now.substring(8,10)}-{now.substring(4,7).toUpperCase()}-{now.substring(11,15)}</Text>
-                <Text style={styles.date}>TIME: {now.substring(16,18)}:{now.substring(19,21)}:{now.substring(22,24)}</Text>
+                <Text style={styles.date}>TIME: {now.substring(16,18)}:{now.substring(19,21)}:{now.substring(22,24)} AST</Text>
                 <Text style={styles.heading}>Irfan Check Report</Text>
                 <Text style={styles.body}>Basic Salary-:</Text>
                 <Text style={styles.imp}>{bs === 0 ? "no salary entered" : bs + " SAR"}</Text>
