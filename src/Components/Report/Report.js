@@ -2,7 +2,7 @@ import React from 'react';
 import { PDFDownloadLink, Page, Text, View, Document, StyleSheet, Link, Image } from '@react-pdf/renderer'
 import './Report.css';
 import hage from './hage.png';
-import retire from './retire.png';
+import retirelogo from './retirelogo.png';
 import gosi from './gosi.png';
 import hc from './hc.png';
 import award from './award.png';
@@ -51,35 +51,35 @@ const styles = StyleSheet.create({
     textAlign: "left"
   },
   imp: {
+    color: '#02894C',
     fontWeight: 'bold',
-    fontFamily: 'Courier',
+    fontFamily: "Courier",
     fontSize: 18,
     paddingTop: 15,
     textAlign: "justify"
   },
   impC: {
-    color: '#0aab65',
+    color: '#02894C',
     fontWeight: 'bold',
-    fontFamily: 'Courier',
-    fontSize: 19,
+    fontSize: 18,
     paddingTop: 15,
     textAlign: "justify"
   },
   footer: {
     fontFamily: "Courier",
     fontSize: 12,
-    paddingTop: 30,
+    paddingTop: 40,
   },
   date: {
     fontFamily: "Courier",
-    fontSize: 8,
+    fontSize: 9,
     paddingBottom: 10,
     textAlign: "left"
   },
   link: {
     textDecoration: 'none',
     fontWeight: 'bold',
-    color: '#02c771',
+    color: '#02894C',
   }
 });
 
@@ -302,19 +302,19 @@ class Report extends React.Component {
                 <Text style={styles.date}>TIME: {now.substring(16,18)}:{now.substring(19,21)}:{now.substring(22,24)}</Text>
                 <Text style={styles.heading}>Irfan Check Report</Text>
                 <Text style={styles.body}>Basic Salary-:</Text>
-                <Text style={styles.imp}>  {bs} SAR</Text>
+                <Text style={styles.imp}>{bs === 0 ? "no salary entered" : bs + " SAR"}</Text>
                 <Text style={styles.body}>Date of Birth-:</Text>
-                <Text style={styles.imp}>  {dob == null ? "no birth date entered" : dob}</Text>
+                <Text style={styles.imp}>{dob == null ? "no birth date entered" : dob}</Text>
                 <Text style={styles.body}>Basic Info Summary-:</Text>
-                <Text style={styles.imp}>  The subject is <Text style={styles.impC}>{age} years old</Text> by Hijri calendar, and is therefore expected to work for <Text style={styles.impC}>{ytr} more years</Text>. Furthermore, the calculated VES index is <Text style={styles.impC}>{vesm}</Text>, and the GOSI-Eligible Salary for the given subject is estimated to be <Text style={styles.impC}>{gosiSalarystr} SAR
+                <Text style={styles.imp}>The subject is <Text style={styles.impC}>{age} years old</Text> by Hijri calendar, and is therefore expected to work for <Text style={styles.impC}>{ytr} more years</Text>. The calculated VES index is <Text style={styles.impC}>{vesm}</Text>, and the GOSI-Eligible Salary for the given subject is estimated to be <Text style={styles.impC}>{gosiSalarystr} SAR
                 </Text>, and the Monthly GOSI Deductible is estimated to be <Text style={styles.impC}>{gosiContstr} SAR per month</Text>. Finally, the computed VES Incentive Award is <Text style={styles.impC}>{viastr} SAR</Text> and GOSI Contributions Top Up (9%) of <Text style={styles.impC}>{gtustr} SAR</Text>.</Text>
                 <Text style={styles.body}>Irfan Benefits-:</Text>
-                <Text style={styles.imp}>  The subject estimated Irfan Award per standard calculations is <Text style={styles.impC}>{ia.toString().substring(0,3) + "," + ia.toString().substring(3,ia.toString().length)} SAR</Text>. Lastly, the subject is entitled to <Text style={styles.impC}>{medCov} years</Text> of Medical Coverage.</Text>
+                <Text style={styles.imp}>The subject estimated Irfan Award per standard calculations is <Text style={styles.impC}>{ia.toString().substring(0,3) + "," + ia.toString().substring(3,ia.toString().length)} SAR</Text>. Lastly, the subject is entitled to <Text style={styles.impC}>{medCov} years</Text> of Medical Coverage.</Text>
                 <Text style={styles.footer}>This report was generated using <Link style={styles.link} src="https://sidfves.info/">Irfan Check Quick-Tool</Link> ©.</Text>
               </View>
             </Page>
           </Document>
-        } fileName={fileName} href={`./${fileName}`} target = "_blank">
+        } fileName={fileName}>
           {({ blob, url, loading, error }) => (loading ? 'Generating PDF...' : 'Generate PDF')}
         </PDFDownloadLink>
       </div>
@@ -339,7 +339,7 @@ class Report extends React.Component {
               </li>
               <li>
                 <h6 className="f4 grow">
-                  <img src={retire} alt="" className="w3-bar-item w3-square" style={{ width:"60px" }}/>
+                  <img src={retirelogo} alt="" className="w3-bar-item w3-square" style={{ width:"60px" }}/>
                     <br/>
                     <span style={{fontSize: "1rem", textAlign: "justify"}} className="w3-bar-item">Years to Retirement &#8594;  <strong>{isNaN(ytr) ? "0 yrs" : age > 0 ? ytr > 0 ? ytr + " yrs" : "retired" : "0 yrs"}</strong></span>
                 </h6>
