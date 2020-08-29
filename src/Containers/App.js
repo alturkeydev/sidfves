@@ -22,7 +22,7 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      route: 'landing',
+      route: 'cal',
       bs: 0,
       dob: null
     }
@@ -40,25 +40,12 @@ class App extends Component {
     this.setState({route: route});
   }
 
-  onLaunch = () => {
-    this.setState({route: 'cal'});
-  }
-
   render() {
 
     return (
       <div className="App">
         <Particles params={particlesOptions} className='particles' />
-        { this.state.route === "landing" ?
-          <div className="pt7 pb5">
-            <button
-              onClick={this.onLaunch}
-              className="b pa3 pv1 pt7 w3-button w3-round w3-hover-white grow pointer f2"
-              id="submitButton"
-              >Launch Tool
-            </button>
-          </div>
-        : this.state.route === 'cal' ?
+        { this.state.route === 'cal' ?
             <Suspense fallback={<div className="pa5 pt7"><Loader type="ThreeDots" color="#02c771" height={80} width={80} /></div>}>
               <AsyncCalculator  state={this.state} setBSalary={this.setBSalary} setDOB={this.setDOB} onRouteChange={this.onRouteChange}/>
             </Suspense>
